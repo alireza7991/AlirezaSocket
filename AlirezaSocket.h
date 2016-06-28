@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <winsock2.h>
+#include <Windows.h>
 #include <thread>
 #include <vector>
 #include <queue>
@@ -135,7 +136,9 @@ public:
 		}
 	}
 	bool sendString(SOCKET socket,string s) {
-		return (send(socket,s.c_str(),s.length()+1,0) < 0);
+		bool state =send(socket,s.c_str(),s.length()+1,0) < 0;
+		Sleep(1);
+		return state;
 	}
 	string recieveString(SOCKET socket) {
 		char input[4096] = {0};
